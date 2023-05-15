@@ -19,7 +19,7 @@ public class DeleteStudentApp {
 			stmt=con.createStatement();
 			String str="DELETE FROM EMP WHERE EMPNO=3000";
 			int delete=stmt.executeUpdate(str);
-			System.out.println(str+"명의 행이 삭제되었습니다.");
+			System.out.println(delete+"명의 행이 삭제되었습니다.");
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
