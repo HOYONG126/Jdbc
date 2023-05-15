@@ -12,27 +12,31 @@ public class DeleteStudentApp {
 		Statement stmt=null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
 			String url="jdbc:oracle:thin:@localhost:1521:xe";
 			String user="scott";
 			String password="tiger";
-			con=DriverManager.getConnection(url,user,password);
+			con=DriverManager.getConnection(url, user, password);
+			
 			stmt=con.createStatement();
-			String str="DELETE FROM EMP WHERE EMPNO=3000";
-			int delete=stmt.executeUpdate(str);
-			System.out.println(delete+"명의 행이 삭제되었습니다.");
 			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(stmt!=null) stmt.close();
-				if(con!=null) con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			String sql="delete from student where no=3000";
+			int rows=stmt.executeUpdate(sql);
+			
+			if(rows > 0) {
+				System.out.println("[메세지]"+rows+"명의 학생정보를 삭제 하였습니다.");
+			} else {
+				System.out.println("[메세지]삭제할 학번의 학생정보를 찾을 수 없습니다.");
 			}
-			
+		} catch (ClassNotFoundException e) {
+			System.out.println("[에러]OracleDriver 클래스를 찾을 수 없습니다.");
+		} catch (SQLException e) {
+			System.out.println("[에러]JDBC 관련 오류 = "+e.getMessage());
+		} finally {
+			try {
+				if(stmt != null) stmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {}
 		}
 	}
 }

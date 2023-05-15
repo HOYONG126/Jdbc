@@ -15,41 +15,31 @@ public class SelectEmpApp {
 		ResultSet rs=null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
 			String url="jdbc:oracle:thin:@localhost:1521:xe";
 			String user="scott";
 			String password="tiger";
-			con=DriverManager.getConnection(url,user,password);
+			con=DriverManager.getConnection(url, user, password);
 			
 			stmt=con.createStatement();
 			
-			String str="SELECT EMPNO,ENAME,SAL FROM EMP ORDER BY SAL DESC";
+			String sql="select empno,ename,sal from emp order by sal desc";
+			rs=stmt.executeQuery(sql);
 			
-			rs=stmt.executeQuery(str);
-			if(rs.next()) {
-				
-				do {
-					int no=rs.getInt("EMPNO");
-					String name=rs.getString("ENAME");
-					String sal=rs.getString("SAL");
-					System.out.println("학번 : "+no+",이름"+name+",급여"+sal);
-					System.out.println("====================================");
-				}while(rs.next());
-			}
-			else {
-				System.out.println("저장된 값이 없습니다.");
-			}
+			while(rs.next()) {
+				System.out.println("사원번호 = "+rs.getString("empno")+", 사원이름 = "
+						+rs.getString("ename")+", 급여 = "+rs.getInt("sal"));
+			} 
 		} catch (ClassNotFoundException e) {
-			System.out.println("파일을 찾을 수 없습니다.");
+			System.out.println("[에러]OracleDriver 클래스를 찾을 수 없습니다.");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}finally {
+			System.out.println("[에러]JDBC 관련 오류 = "+e.getMessage());
+		} finally {
 			try {
-				if(rs!=null)	rs.close();
-				if(stmt!=null)	stmt.close();
-				if(con!=null)	con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+				if(rs != null) rs.close();
+				if(stmt != null) stmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {}
 		}
 	}
 }

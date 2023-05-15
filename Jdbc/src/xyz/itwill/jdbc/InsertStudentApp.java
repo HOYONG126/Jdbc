@@ -58,7 +58,7 @@ public class InsertStudentApp {
 			//Connection 객체를 반환받아 저장
 			//DriverManager.getConnection(String url, String user, String password)
 			// => DriverManager 클래스에 등록된 JDBC Driver 객체를 이용하여 DBMS 서버에 접속하는 메소드
-			// => DBMS 서버에 접속된 정보가 저장된 Connection 객체를 반환
+			// => DBMS 서버에 정상적으로 접속이 되면 접속정보가 저장된 Connection 객체를 반환
 			// => 접속 URL 주소의 프로토콜을 이용하여 특정 DBMS 서버에 접속
 			//URL(Uniform Resource Location) : 인터넷에 존재하는 자원의 위치를 표현하는 주소
 			//형식)Protocol:ServerName:Port:Resource >> http://www.itwill.xyz:80/test/index.html
@@ -83,8 +83,8 @@ public class InsertStudentApp {
 			//Statement.executeQuery(String sql) : SELECT 명령을 전달하여 실행하는 메소드
 			// => SELECT 명령의 실행결과로 검색행이 저장된 ResultSet 객체를 반환 
 			//String sql="insert into student values(1000,'홍길동','010-1234-5678','서울시 강남구','00/01/01')";
-			//String sql="insert into student values(2000,'전우치','010-7894-5612','수원시 팔달구','02/05/08')";
-			String sql="insert into student values(3000,'임꺽정','010-7894-5612','수원시 팔달구','02/03/29')";
+			//String sql="insert into student values(2000,'임꺽정','010-7894-5612','수원시 월정구','02/05/08')";
+			String sql="insert into student values(3000,'전우치','010-1478-2589','인천시 상당구','1998-12-11')";
 			int rows=stmt.executeUpdate(sql);
 			
 			//5.반환받은 SQL 명령의 실행 결과값을 사용자에게 제공
