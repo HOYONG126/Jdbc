@@ -36,12 +36,12 @@ public class SelectEmpApp {
 				}while(rs.next());
 			}
 			else {
-				System.out.println("출력할 파일이 없습니다.");
+				System.out.println("저장된 값이 없습니다.");
 			}
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("파일을 찾을 수 없습니다.");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}finally {
 			try {
 				if(rs!=null)	rs.close();
