@@ -5,33 +5,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+//DEPT 테이블에 저장된 모든 부서정보를 검색하여 출력하는 JDBC 프로그램 작성
 public class ConnectionFactoryApp {
 	public static void main(String[] args) {
-		
 		Connection con=null;
 		Statement stmt=null;
 		ResultSet rs=null;
 		try {
-			//여기 메소드에 묶인 것들은 파일불러오기 , 연결하기 +연결할 때 필요한 url, user, password
 			con=ConnectionFactory.getConnection();
-			
 			
 			stmt=con.createStatement();
 			
-			String sql="SELECT DEPTNO,DNAME,LOC FROM DEPT ORDER BY DEPTNO";
+			String sql="select deptno,dname,loc from dept order by deptno";
 			rs=stmt.executeQuery(sql);
 			
-			
 			while(rs.next()) {
-				System.out.println("사원번호 : "+ rs.getInt("DEPTNO")+"사원번호 : "+ rs.getString("DNAME")+
-						"위치 : "+ rs.getString("LOC"));
+				System.out.println("부서번호 = "+rs.getInt("deptno")+", 부서이름 = "
+						+rs.getString("dname")+",  부서위치 = "+rs.getString("loc"));
 			}
-			
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			ConnectionFactory.close(con, stmt,rs);
+			System.out.println("[에러]JDBC 관련 오류 = "+e.getMessage());
+		} finally {
+			ConnectionFactory.close(con, stmt, rs);
 		}
-		
-}
+	}
 }

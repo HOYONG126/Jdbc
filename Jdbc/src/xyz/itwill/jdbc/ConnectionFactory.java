@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-//공통부분은 하나로 설정해서 관리하기
-//Connection 객체를 생성하여 반환하서나 JDBC 관련 객체를 매개변수로 전달받아 제거하는 기능을 제공하는 클래스
+//Connection 객체를 생성하여 반환하거나 JDBC 관련 객체를 매개변수로 전달받아 제거하는 기능을
+//메소드로 제공하는 클래스
+// => JDBC 프로그램 작성에 필요한 공통적인 기능을 메소드로 제공
+// => 코드의 중복성을 최소화 시켜 프로그램의 생산성이 높이고 유지보수의 효율성 증가  
 public class ConnectionFactory {
-	
 	//Connection 객체를 생성하여 반환하는 메소드
-	//연결부분을 메소드로 한 것 -> Oracle의 
 	public static Connection getConnection() {
 		Connection con=null;
 		try {
@@ -20,34 +20,36 @@ public class ConnectionFactory {
 			String url="jdbc:oracle:thin:@localhost:1521:xe";
 			String user="scott";
 			String password="tiger";
-			con=DriverManager.getConnection(url,user,password);
-		}catch (Exception e) {
-			System.out.println("connection 객체 생성 중 오류 발생");
+			con=DriverManager.getConnection(url, user, password);
+		} catch (Exception e) {
+			System.out.println("[에러]Connection 객체를 생성할 수 없습니다.");
 		}
 		return con;
 	}
 	
-	
+	//JDBC 관련 객체를 매개변수로 전달받아 제거하는 메소드
 	public static void close(Connection con) {
 		try {
-			con.close();
+			if(con != null) con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	public static void close(Connection con,Statement stmt) {
+	
+	public static void close(Connection con, Statement stmt) {
 		try {
-			stmt.close();
-			con.close();
+			if(stmt != null) stmt.close();
+			if(con != null) con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	public static void close(Connection con,Statement stmt, ResultSet rs) {
+	
+	public static void close(Connection con, Statement stmt, ResultSet rs) {
 		try {
-			rs.close();
-			stmt.close();
-			con.close();
+			if(rs != null) rs.close();
+			if(stmt != null) stmt.close();
+			if(con != null) con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
