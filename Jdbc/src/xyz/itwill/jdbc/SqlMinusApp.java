@@ -18,7 +18,7 @@ public class SqlMinusApp {
 		Connection con=ConnectionFactory.getConnection();
 		Statement stmt=con.createStatement();
 		ResultSet rs=null;
-		
+			
 		System.out.println("SQLMinus 프로그램을 실행합니다.(종료 : exit)");
 		
 		while(true) {
