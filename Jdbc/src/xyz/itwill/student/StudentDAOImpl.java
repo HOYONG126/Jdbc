@@ -193,7 +193,7 @@ public class StudentDAOImpl extends JdbcDAO implements StudentDAO {
 			String str="SELECT * FROM STUDENT";
 			pstmt=con.prepareStatement(str);
 			rs=pstmt.executeQuery();
-			while(rs.next()) {
+			while(rs.next()) { 
 				StudentDTO student=new StudentDTO();
 				student.setNo(rs.getInt("no"));
 				student.setAddress(rs.getString("address"));
