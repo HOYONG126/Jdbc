@@ -20,7 +20,7 @@ public class StudentCUIApp {
 		
 		System.out.println("<< 학생 관리 프로그램 >>");
 		
-loop:	while(true) {
+		while(true) {
 			//메뉴 출력
 			for(String item : menu) {
 				System.out.println(item);
@@ -39,14 +39,16 @@ loop:	while(true) {
 				continue;//반복문(while) 재실행
 			}
 			System.out.println();
+
+			if(choice == 6) break;//반복문(while) 종료
+			
 			//메뉴 선택에 따른 기능 구현 - 메소드 호출
 			switch(choice) {
 			case 1: addStudent(); break;
 			case 2: break;
-			case 3: break; 
+			case 3: break;
 			case 4: break;
 			case 5: break;
-			case 6: break loop;
 			}
 			System.out.println();
 		}
