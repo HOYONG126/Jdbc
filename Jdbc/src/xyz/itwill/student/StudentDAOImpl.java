@@ -204,7 +204,7 @@ public class StudentDAOImpl extends JdbcDAO implements StudentDAO {
 			}
 		} catch (SQLException e) {
 			System.out.println("[에러]selectNameStudentList() 메소드의 SQL 오류 = "+e.getMessage());
-		}finally {
+		}finally { 
 			close(con, pstmt, rs);
 		}
 		
