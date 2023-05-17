@@ -405,7 +405,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 	//JTextField 컴퍼넌트로 입력된 학번을 제공받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 
 	//검색하여 JTextField 컴퍼넌트에 출력하는 메소드 - UPDATE_CHANGE 상태 변경
 	public void searchNoStudent() {
-
+	//	StudentDTO student=StudentDAOImpl.getDAO().selectStudent(no);
 	}
 	
 	//JTextField 컴퍼넌트로 입력된 학생정보를 제공받아 STUDENT 테이블에 저장된 학생정보를 변경하고 
