@@ -9,9 +9,9 @@ public interface FlowerDAO {
 	FlowerDTO selectFlower(int no);
 	
 	//season테이블
-	int insertFlower(SeasonDTO season);
-	int updateFlower(SeasonDTO season);
-	int deleteFlower(String season);
-	SeasonDTO selectFlower(String season);
+	int insertSeason(SeasonDTO season);
+	int updateSeason(SeasonDTO season);
+	int deleteSeason(String season);
+	SeasonDTO selectSeason(String season);
 	
 }	
