@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import oracle.ucp.jdbc.PoolDataSource;
 import oracle.ucp.jdbc.PoolDataSourceFactory;
 
-public class JdbcDAO {
+public abstract class JdbcDAO {
 	private static PoolDataSource pds;
 	static {
 		pds=PoolDataSourceFactory.getPoolDataSource();
@@ -35,7 +35,6 @@ public class JdbcDAO {
 			}
 			return con;
 		}
-		
 	
 	
 	public void close(Connection con, PreparedStatement pstmt) {
